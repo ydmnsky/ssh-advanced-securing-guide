@@ -1,11 +1,11 @@
 # Продвинутая настройка безопасности для подключения по SSH к удалённому серверу.
 
 ## Обновляем пакеты
-```bash
+```console
 sudo apt-get update && sudo apt-get upgrade
 ```
 ## Устанавливаем демон knockd
-```bash
+```console
 sudo apt install knockd
 ```
 ## Редактируем файл /etc/knockd.conf
@@ -28,7 +28,7 @@ sudo apt install knockd
 
 
 ## Включаем его и добавляем в автозагрузку
-```bash
+```console
 sudo systemctl start knockd.service
 sudo systemctl enable knockd.service
 ```
@@ -45,7 +45,7 @@ ssh <Имя юзера>@<IP-адрес сервера>
 knock <IP-адрес сервера> <Последовательность портов для закрытия>
 ```
 ## Делаем его исполняемым
-```bash
+```console
 chmod +x autoknock.sh
 ```
 ## Подключаемся к серверу
@@ -53,7 +53,7 @@ chmod +x autoknock.sh
 
 
 ## Устанавливаем fail2ban
-```bash
+```console
 sudo apt install fail2ban
 ```
 ## Cоздаем jail для банов IP-адресов после неудачных попыток подключений в файле /etc/fail2ban/jail.local
@@ -70,13 +70,13 @@ ignoreip = 127.0.0.1
 
 ```
 ## Запускаем сервис fail2ban и добавляем его в автозапуск
-```bash
+```console
 sudo systemctl start knockd.service
 sudo systemctl enable knockd.service
 ```
 
 ## Чтобы посмотреть забаненные IP-адреса
-```bash
+```console
 sudo fail2ban-client status sshd
 ```
 
