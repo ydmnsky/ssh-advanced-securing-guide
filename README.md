@@ -44,12 +44,39 @@ ssh <Имя юзера>@<IP-адрес сервера>
 
 knock <IP-адрес сервера> <Последовательность портов для закрытия>
 ```
-
 ## Делаем его исполняемым
 ```bash
 chmod +x autoknock.sh
 ```
-
 ## Подключаемся к серверу
-./auto_login.sh
+./autoknock.sh
+
+
+## Устанавливаем fail2ban
+```bash
+sudo apt install fail2ban
+```
+## Cоздаем jail для банов IP-адресов после неудачных попыток подключений в файле /etc/fail2ban/jail.local
+```
+[sshd]
+enabled = true
+mode = aggressive
+port = ssh
+logpath = /var/log/auth.log
+maxretry = 3
+findtime = 600
+bantime = 24h
+ignoreip = 127.0.0.1
+
+```
+## Запускаем сервис fail2ban и добавляем его в автозапуск
+```bash
+sudo systemctl start knockd.service
+sudo systemctl enable knockd.service
+```
+
+## Чтобы посмотреть забаненные IP-адреса
+```bash
+sudo fail2ban-client status sshd
+```
 
