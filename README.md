@@ -69,6 +69,12 @@ bantime = 24h
 ignoreip = 127.0.0.1
 
 ```
+## В файле /etc/ssh/sshd_config раскомментируем и редактируем параметр LogLevel
+```
+...
+LogLevel VERBOSE
+...
+```
 ## Запускаем сервис fail2ban и добавляем его в автозапуск
 ```bash
 sudo systemctl start knockd.service
