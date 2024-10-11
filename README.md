@@ -77,8 +77,8 @@ LogLevel VERBOSE
 ```
 ## Запускаем сервис fail2ban и добавляем его в автозапуск
 ```bash
-sudo systemctl start knockd.service
-sudo systemctl enable knockd.service
+sudo systemctl start fail2ban.service
+sudo systemctl enable fail2ban.service
 ```
 
 ## Чтобы посмотреть забаненные IP-адреса
